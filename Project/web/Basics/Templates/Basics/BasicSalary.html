@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {%csrf_token %}
+        <table border="1" align="center">
+            <tr>
+            <th>Firstname</th>
+            <td><input type="text"name="txt_firstname"placeholder="enter firstname"></td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td><input type="text"name="txt_lastname"placeholder="enter Lastname"></td>
+                </tr>
+        <tr>
+            <th>Gender</th>
+            <td>
+            <input type="radio"name="gender"value="Male">Male
+            <input type="radio"name="gender"value="Female">Female
+            </td>
+        </tr> 
+        <tr>
+            <th>Martial</th>
+            <td>
+            <input type="radio"name="martial"value="Single">Single
+            <input type="radio"name="martial"value="Married">Married
+            </td>
+        </tr>
+        <tr>
+            <th>Department</th>
+            <td>
+            <select name="dept">
+            <option>-----select-----</option>
+            <option value="CS">Computer science</option>
+            <option value="IT">Information Technology</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                    <th>Basicsalary</th>
+                    <td><input type="text"name="txt_basicsalary"placeholder="enter basicsalary"></td>
+                    </tr> 
+                    <td colspan="2"align="center">
+                        <input type="submit"name="btn_submit"value="Submit">
+                        <input type="submit"name="btn_cancel"value="Cancel">
+                        
+                    </td>
+                    </tr>
+        </table>
+    </form>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>{{name}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{Gender}}</td>
+        </tr>
+        <tr>
+            <td>Martial</td>
+            <td>{{Martial}}</td>
+        </tr>
+        <tr>
+            <td>Department</td>
+            <td>{{Department}}</td>
+        </tr>
+        <td>Basicsalary</td>
+            <td>{{Basicsalary}}</td>
+        </tr>
+    <tr>
+    <td>TA</td>
+        <td>{{TA}}</td>
+    </tr>
+    <tr>
+        <td>DA</td>
+        <td>{{DA}}</td>
+    </tr>
+    <tr>
+        <td>HRA</td>
+        <td>{{HRA}}</td>
+    </tr>
+    <tr>
+        <td>LIC</td>
+        <td>{{LIC}}</td>
+    </tr>
+    <tr>
+        <td>PF</td>
+        <td>{{PF}}</td>
+    </tr>
+    <tr>
+        <td>DEDUCTION</td>
+        <td>{{DEDUCTION}}</td>
+    </tr>
+    <tr>
+        <td>NETAMOUNT</td>
+        <td>{{NETAMOUNT}}</td>
+    </tr>
+    
+</table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'Orphanage/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3><center>Complaint</center></h3>
+    <br>
+    <form method="post">
+        {% csrf_token  %}
+        <table border="1" align="center">
+            <tr>
+                <td>Complaint  </td>
+            <td><textarea name="txt_complaint" id="" cols="30" rows="10" required></textarea></td>
+            </tr>
+                <td colspan="2"align="center">
+                    <input type="submit"name="btnsend"value="Send">
+                 </td>
+               </tr>
+        </table>
+    </form>
+</body>
+</html>
+<br><br>
+{% endblock content %}

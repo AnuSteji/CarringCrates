@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1"align="center">
+        <tr>
+            <td>Sl.No</td>
+            <td>Name</td>
+            <td>Contact</td>
+            <td>Email</td> 
+            <td>Address</td>
+            <td>District</td> 
+            <td>Place</td>
+            <td>Photo</td>
+            <td>Count</td> 
+            <td>Action</td>
+        </tr>
+        {% for i in accorphdata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.accorph.orphanage_name}}</td>
+            <td>{{i.accorph.orphanage_contact}}</td>
+            <td>{{i.accorph.orphanage_email}}</td>  
+            <td>{{i.accorph.orphanage_address}}</td>
+            <td>{{i.district.district_name}}</td>
+            <td>{{i.place.Place_name}}</td>
+            <td><img src="{{i.accorph.orphanage_photo}}" width="150" height="150" alt=""></td> 
+            <td>{{i.accorph.orphanage_count}}</td>
+            <td><a href="{% url 'webadmin:reject_orphanage' i.id %}">Reject</a></td>
+        </tr>
+        {%endfor %}
+    </table>  
+        
+</body>
+</html>

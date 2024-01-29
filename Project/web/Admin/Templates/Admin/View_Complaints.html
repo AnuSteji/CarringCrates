@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>User Complaint</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Complaint</td>
+            <td>User</td>
+            <td>Action</td>
+        </tr>
+        {% for i in user_com %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.usercomplaint.complaint_content}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td><a href="{% url 'webadmin:reply' i.id %}">Reply</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Orphanage Complaint</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Complaint</td>
+            <td>Orphanage</td>
+            <td>Action</td>
+        </tr>
+        {% for i in orph %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.orphcomplaint.complaint_content}}</td>
+            <td>{{i.orph.orphanage_name}}</td>
+            <td><a href="{% url 'webadmin:reply' i.id %}">Reply</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% if msg %}
+    <script>
+        alert("{{msg}}")
+        window.location = "{% url 'webadmin:Homepage' %}"
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {%csrf_token %}
+        <table border="1" align="center">
+            <tr>
+            <th>Name</th>
+            <td><input type="text"name="txt_name"placeholder="enter name"></td>
+            </tr>
+            <tr>
+            <th>Department</th>
+            <td>
+                <select name="dept">
+                    <option>-----select-----</option>
+                    <option value="CS">Computer science</option>
+                    <option value="IT">Information Technology</option>
+                </select>
+                </td>
+        </tr>
+        <tr>
+            <th>Year</th>
+            <td>
+            <input type="checkbox"name="txt_year"value="year 1">year 1
+            <input type="checkbox"name="txt_year"value="year 2">year 2
+            <input type="checkbox"name="txt_year"value="year 3">year 3
+            
+        </td>
+            </tr>
+            <tr>
+            <th>mark1</th>
+            <td><input type="text"name="txt_mark1"placeholder="enter mark 1"></td>
+        </tr>
+        <tr>
+            <th>mark2</th>
+            <td><input type="text"name="txt_mark2"placeholder="enter mark 2"></td>
+            </tr>
+            <tr>
+            <th>mark3</th>
+            <td><input type="text"name="txt_mark3"placeholder="enter mark 3"></td>
+        </tr>
+        <tr>
+            <td colspan="2"align="center">
+            <input type="submit"name="btn_save"value="Save">
+            <input type="submit"name="btn_cancel"value="Cancel">
+            
+        </td>
+        </tr>
+        </table>
+    </form>
+    Name={{Name}}
+    Deparment={{Department}} 
+    Year={{Year}} 
+    mark1={{Mark1}} 
+    mark2={{Mark2}} 
+    mark3={{Mark3}} 
+    TotalMarks={{TotalMark}} 
+    Average={{Average}} 
+    Grade={{grade}}      
+</body>
+</html>

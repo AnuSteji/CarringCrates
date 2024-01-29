@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1"align="center">
+        <tr>
+            <td>Sl.No</td>
+            <td>User Name</td>
+            <td>DonationType</td>
+            <td>Title</td> 
+            <td>Description</td>
+            <td>Date</td> 
+            <td>Orphanage</td>
+        </tr>
+        {% for i in assigneddata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.dtype.donationtype_name}}</td>
+            <td>{{i.assigned.title}}</td>  
+            <td>{{i.assigned.description}}</td>
+            <td>{{i.assigned.date}}</td>
+            <td>{{i.orph.orphanage_name}}</td>
+            
+        </tr>
+        {%endfor %}
+    </table>   
+</body>
+</html>

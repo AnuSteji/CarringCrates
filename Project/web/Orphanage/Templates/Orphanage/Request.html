@@ -1,0 +1,94 @@
+{% extends 'Orphanage/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <body>
+        <h3><center>Request</center></h3>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <table border="1" align="center">
+                <tr>
+                    <th>Title</th>
+                    <td><input type="text" name="txt_title" placeholder="enter title" required></td>
+                </tr>
+                <tr>
+                    <th>Descrition</th>
+                    <td><input type="text" name="txt_description" placeholder="enter descrition" required></td>
+                </tr>
+                <tr>
+                    <th>NumberofHead</th>
+                    <td><input type="text" name="txt_head" placeholder="enter numberofhead" required></td>
+                </tr>
+                <tr>
+                    <th>Donationtype</th>
+                    <td>
+                        <select name="txt_donationtype" required>
+                            <option>-----select-----</option>
+                            {% for i in donation_type %}
+                            <option value="{{i.id}}">{{i.donation.donationtype_name}}</option>
+                            {% endfor %}
+                    </td>
+                    </select>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <td><input type="text" name="txt_amount" placeholder="enter amount"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="btn_add" value="Add">
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <br>
+        <br>
+        <table border="1"align="center">
+            <tr>
+                <td>Sl.No</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Date</td> 
+                <td>Count</td>
+                <td>Type</td> 
+                <td>Amount</td>
+                <td>Status</td>
+            </tr>
+            {% for i in request %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.requests.title}}</td>
+                <td>{{i.requests.description}}</td>
+                <td>{{i.requests.request_date}}</td>  
+                <td>{{i.requests.numberofhead}}</td>
+                <td>{{i.dtype.donationtype_name}}</td>
+                <td>{{i.requests.amount}}</td>  
+                <td>
+                    {% if i.requests.status == 0 %}
+                    Not Approved
+                    {% elif i.requests.status == 1 %}
+                    Approved
+                    {% else %}
+                    Rejected
+                    {% endif %}
+                </td>
+                      </tr>
+            {%endfor %}
+        </table>
+    </body>
+
+</html>
+<br><br>
+{% endblock content %}

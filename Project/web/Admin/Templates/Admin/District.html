@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {%csrf_token %}
+        <table border="1" align="center">
+                <tr>
+                <th>District</th>
+                <td><input type="text"name="txt_dis"placeholder="enter district" value="{{dist.district_name}}" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"align="center">
+                    <input type="submit"name="btnsave"value="save">
+                    <input type="submit"name="btncancel"value="cancel">
+                </td>
+                </tr>
+        </table>
+    </form>
+    <br>
+    <br>
+    <table border="1"align="center">
+    <tr>
+        <td>Sl.no</td>
+        <td>District</td>
+         <td>Action</td>   
+    </tr>
+    {% for i in distdata %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.dist.district_name}}</td>
+        <td><a href="{% url 'webadmin:delete_dist' i.id %}">Delete</a>
+           <a href="{% url 'webadmin:edit_dist' i.id %}">Edit</a>
+        </td>
+
+    </tr>
+    {%endfor %}
+</table>
+    
+    
+</body>
+</html>

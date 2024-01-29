@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <table border="1" align="center">
+            <tr>
+                <th>User</th>
+                <td>{{user.user_name}}</td>
+            </tr>
+            <tr>
+                <th>Donationtype</th>
+                <td>{{dtype.donationtype_name}}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{user_donation.title}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{user_donation.description}}</td>
+            </tr>
+            <tr>
+                <th>Orphanage</th>
+                <td>
+                    <select name="txt_donationtype">
+                        <option>-----select-----</option>
+                        {% for i in or %}
+                        <option value="{{i.id}}">{{i.or.orphanage_name}}</option>
+                        {% endfor %}
+                </select>
+            </td>
+                <tr>
+                    <td colspan="2"align="center">
+                    <input type="submit"name="btnassign"value="Assign">
+                </td>
+                </tr>
+        </table>
+    </form>     
+       
+</body>
+</html>

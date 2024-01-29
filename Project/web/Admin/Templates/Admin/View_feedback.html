@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>User Feed Back</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Feedback</td>
+            <td>User</td>
+        </tr>
+        {% for i in user_feed %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.feedback.feedback}}</td>
+            <td>{{i.user.user_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Orphanage Feed Back</h3>
+    <table>
+        <tr>
+            <td>#</td>
+            <td>Feedback</td>
+            <td>Orphanage</td>
+        </tr>
+        {% for i in or_feed %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.feedback.feedback}}</td>
+            <td>{{i.orph.orphanage_name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

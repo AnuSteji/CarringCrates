@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1"align="center">
+        <tr>
+            <td>Sl.No</td>
+            <td>Title</td>
+            <td>Description</td>
+            <td>NumberofHead</td> 
+            <td>Donationtype</td>
+            <td>Amount</td> 
+            <td>Action</td>
+        </tr>
+        {% for i in orphreqdata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.orphreq.title}}</td>
+            <td>{{i.orphreq.description}}</td>
+            <td>{{i.orphreq.numberofhead}}</td>  
+            <td>{{i.orphreq.donationtype_id}}</td>
+            <td>{{i.orphreq.amount}}</td>
+            <td><a href="{% url 'webadmin:reject_orphanagerequest' i.id %}">Reject</a>
+        </tr>
+        {%endfor %}
+    </table>  
+</body>
+</html>

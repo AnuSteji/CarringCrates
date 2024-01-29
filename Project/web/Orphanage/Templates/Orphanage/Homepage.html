@@ -1,0 +1,30 @@
+{% extends 'Orphanage/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3><center>HomePage</center></h3>
+    <br>
+    <center><a href="{% url 'weborphanage:Myprofile' %}">Myprofile</a>
+    <br>
+    <a href="{% url 'weborphanage:Request' %}">My Request</a>
+    <br>
+    <a href="{% url 'weborphanage:Assigned_Donation' %}">Donations</a>
+    <br>
+    <a href="{% url 'weborphanage:Complaint' %}">Complaint</a>
+    <br>
+    <a href="{% url 'weborphanage:View_Reply' %}">View Reply</a>
+    <br>
+    <a href="{% url 'weborphanage:Feedback' %}">Feed Back</a>
+    <br></center>
+</body> 
+</html>
+<br><br>
+{% endblock content %}

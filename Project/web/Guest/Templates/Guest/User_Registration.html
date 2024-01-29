@@ -1,0 +1,115 @@
+{% extends 'Guest/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2><center>User_Registration</center></h2>
+    <br>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token %}
+        <table border="1" align="center">
+            <tr>
+                <td>Name</td>
+                <td><input required type="text" name="txt_name" title="Name Allows Only Alphabets,Spaces and First Letter Must Be Capital Letter" pattern="^[A-Z]+[a-zA-Z ]*$"/></td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td><input  type="email" required  onkeyup="validateForm(this.value)"" name="txt_email" id="txt_email" />
+                <span id="erro" style="color: red;"></span></td>  
+            </tr>
+              <tr>
+                <td>Contact</td>
+                <td><input type="text" required name="txt_contact" pattern="[7-9]{1}[0-9]{9}" 
+                    title="Phone number with 7-9 and remaing 9 digit with 0-9"/></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><textarea name="txt_address" required></textarea></td>
+                  </tr>
+                            <tr>
+                <th>District</th>
+                <td>
+                    <select name="sel_dist" id="sel_dist"required>
+                        <option>-----select-----</option>
+                        {% for i in dist %}
+                        <option value="{{i.id}}">{{i.dist.district_name}}</option>
+                        {% endfor %}
+                    </select>
+                    </td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>
+                    <select name="sel_place" id="sel_place"required>
+                        <option>-----select-----</option>
+                    </select>
+                    </td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td><input type="file"name="txt_photo"placeholder="Photo" required></td>
+                </tr>
+                <tr>
+                    <th>Proof</th>
+                    <td><input type="file"name="txt_proof"placeholder="enter proof" required></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="text" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required name="txt_pass" /></td>
+                      </tr>
+                <tr>
+                    <td colspan="2"align="center">
+                    <input type="submit"name="btnregister"value="Register">
+                    
+                </td>
+                </tr>
+        </table>
+    </form> 
+     {% if msg %}  
+     <script>
+        alert("{{msg}}")
+     </script>
+     {% endif %}
+</body>
+</html>
+<script>
+    function validateForm() {
+        var email = document.getElementById('txt_email').value;
+        console.log(email);
+        var pattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        
+        if (!pattern.test(email)) {
+            document.getElementById('erro').innerHTML='Please enter a valid Gmail address.';
+            document.getElementById('btnregister').disabled=true;
+        }
+        else{
+            document.getElementById('erro').innerHTML='';
+            document.getElementById('btnregister').disabled=false;
+
+        }
+    }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $("#sel_dist").change(function () {
+        var disid= $(this).val();
+        var ur = "{% url 'webguest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { disid: disid, },
+            success: function (data) {
+                $("#sel_place").html(data);
+            },
+        });
+    });
+</script>
+<br><br><br>
+{% endblock content %}

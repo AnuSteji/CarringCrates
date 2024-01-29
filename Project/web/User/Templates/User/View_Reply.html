@@ -1,0 +1,38 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3><center>View</center></h3>
+    <br>
+    <table border="1"align="center">
+        <tr>
+            <td>Sl.No</td>
+            <td>Complaint Content</td>
+            <td>Replay</td>   
+        </tr>
+        {% for i in reply %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.reply.complaint_content}}</td>
+            <td>
+                {% if i.reply.complaint_reply == "" %}
+                N/A
+                {% else %}
+                {{i.reply.complaint_reply}}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+<br><br>
+{% endblock content %}

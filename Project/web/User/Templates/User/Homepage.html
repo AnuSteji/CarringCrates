@@ -1,0 +1,36 @@
+{% extends 'User/Header.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3><center>HomePage</center></h3>
+    <br><center>
+    <a href="{% url 'webuser:Myprofile' %}">Myprofile</a>
+    <br>
+    <a href="{% url 'webuser:Orphanagerequest' %}">Orphanage Request</a>
+    <br>
+    <a href="{% url 'webuser:Donation' %}">My Donation</a>
+    <br>
+    <a href="{% url 'webuser:Complaint' %}">Complaint</a>
+    <br>
+    <a href="{% url 'webuser:View_Reply' %}">View Reply</a>
+    <br>
+    <a href="{% url 'webuser:Feedback' %}">Feed Back</a>
+</center>
+</body>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+    window.location = "{% url 'webuser:Homepage' %}"
+</script>
+{% endif %}
+</html>
+<br><br>
+{% endblock content %}

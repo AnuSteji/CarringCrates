@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1"align="center">
+        <tr>
+            <td>Sl.No</td>
+            <td>User Name</td>
+            <td>Donationtype</td>
+            <td>Title</td> 
+            <td>Description</td>
+            <td>Date</td> 
+            <td>Action</td>
+        </tr>
+        {% for i in donationdata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.user_name}}</td>
+            <td>{{i.dot.donationtype_name}}</td>
+            <td>{{i.donation.title}}</td>  
+            <td>{{i.donation.description}}</td>
+            <td>{{i.donation.date}}</td>
+            <td><a href="{% url 'webadmin:Assign_User_Request' i.id %}">Assign</a></td>
+        </tr>
+        {%endfor %}
+    </table>   
+</body>
+{% if msg %}
+<script>
+    alert("{{msg}}")
+    window.location = "{% url 'webadmin:Homepage' %}"
+</script>
+{% endif %}
+</html>
