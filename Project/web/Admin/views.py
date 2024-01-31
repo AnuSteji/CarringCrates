@@ -9,7 +9,7 @@ db = firestore.client()
 
 # Create your views here.
 def Homepage(request):
-    new = db.collection("tbl_orphanageregistration").stream()
+    new = db.collection("tbl_orphanageregistration").where("orphanage_status", "==", 1).stream()
     new_data=[]
     for i in new:
         newdata=i.to_dict()
