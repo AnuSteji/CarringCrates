@@ -28,7 +28,7 @@ def User_Registration(request):
         dist_data.append({"dist":i.to_dict(),"id":i.id})
       if request.method=="POST":
         Useremail=(request.POST.get("txt_email"))
-        Password=(request.POST.get("txt_password"))
+        Password=(request.POST.get("txt_pass"))
         try:
           user = firebase_admin.auth.create_user(email=Useremail,password=Password)
         except (firebase_admin._auth_utils.EmailAlreadyExistsError,ValueError) as error:
@@ -84,8 +84,11 @@ def Login(request):
       Email=request.POST.get("txt_email")
       Password=request.POST.get("txt_password")
 
+     
       try:
         data = authe.sign_in_with_email_and_password(Email,Password)
+        print(data)
+
       except:
         return render(request,"Guest/Login.html",{"msg":"error in Email or Password"})
       data_id = data["localId"]
@@ -95,6 +98,7 @@ def Login(request):
       orphanage = db.collection("tbl_orphanageregistration").where("Orphanage_id", "==", data_id).where("orphanage_status", "==", 1).stream()
       for o in orphanage:
         op_id = o.id
+      
     
       if us_id:
         request.session["usid"] = us_id

@@ -9,7 +9,15 @@ db = firestore.client()
 
 # Create your views here.
 def Homepage(request):
-    return render(request,"Admin/Homepage.html")
+    new = db.collection("tbl_orphanageregistration").where("orphanage_status", "==", 1).stream()
+    new_data=[]
+    for i in new:
+        newdata=i.to_dict()
+        place = db.collection("tbl_place").document(newdata["place_id"]).get().to_dict()
+        District= db.collection("tbl_district").document(place["District_id"]).get().to_dict()
+        ddata={"new":newdata,"id":i.id,"district":District,"place":place}
+        new_data.append(ddata)
+    return render(request,"Admin/Homepage.html",{'orphanage':new_data})
 
 def District(request):
     dist = db.collection("tbl_district").stream()
