@@ -38,7 +38,12 @@
                 </tr>
         </table>
     </form> 
-     
+     {% if msg %}
+     <script>
+        alert("{{msg}}")
+        window.location = "{% url 'webadmin:Homepage' %}"
+     </script>
+     {% endif %}
 </body>
 </html>
 <script>

@@ -80,9 +80,14 @@ def Admin_Registration(request):
     if request.method=="POST":
         AdminName=request.POST.get("txt_name")
         AdminEmail=request.POST.get("txt_email")
-        AdminContact=int(request.POST.get("txt_contact"))
-        Adminpassword=int(request.POST.get("txt_password"))
-        return render(request,"Admin/Admin_Registration.html",{'Register':Register})
+        AdminContact=request.POST.get("txt_contact")
+        Adminpassword=request.POST.get("txt_pass")
+        try:
+          admin = firebase_admin.auth.create_user(email=AdminEmail,password=Adminpassword)
+        except (firebase_admin._auth_utils.EmailAlreadyExistsError,ValueError) as error:
+          return render(request,"Admin/Admin_Registration.htm",{"msg":error})
+        db.collection("tbl_admin").add({"admin_name":AdminName,"admin_email":AdminEmail,"admin_contact":AdminContact,"admin_id":admin.uid})
+        return render(request,"Admin/Admin_Registration.html",{'msg':"Account Created"})
     else:
         return render(request,"Admin/Admin_Registration.html")
 
