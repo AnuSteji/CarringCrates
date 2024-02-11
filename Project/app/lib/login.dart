@@ -18,9 +18,6 @@ class LoginState extends State<Login> {
    
    
   Future<void> Login() async {
-    
-    print(_emailController.text);
-    print(_passwordController.text);
     // gotoDashboard();
     try {
         final FirebaseAuth auth = FirebaseAuth.instance;
